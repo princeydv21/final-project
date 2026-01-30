@@ -1,121 +1,151 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Memory Tree for Maggie Ji</title>
+<title>For Maggie Ji</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(to bottom, #ffd6e8, #fff5fa);
-    font-family: 'Georgia', serif;
-    overflow: hidden;
+body{
+    margin:0;
+    height:100vh;
+    background:linear-gradient(to bottom,#ffd6e8,#fff5fa);
+    font-family:Georgia,serif;
+    overflow:hidden;
 }
 
 /* START SCREEN */
-.start {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 50;
-    background: linear-gradient(to bottom, #ffd6e8, #fff5fa);
-    cursor: pointer;
+.start{
+    position:fixed;
+    inset:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(to bottom,#ffd6e8,#fff5fa);
+    z-index:100;
+    cursor:pointer;
 }
-.start h1 {
-    color: #c9184a;
-    animation: pulse 2s infinite;
+.start h1{
+    color:#c9184a;
+    animation:pulse 2s infinite;
 }
-@keyframes pulse {
-    0% { opacity: .4; }
-    50% { opacity: 1; }
-    100% { opacity: .4; }
+@keyframes pulse{
+    0%{opacity:.4}
+    50%{opacity:1}
+    100%{opacity:.4}
 }
 
-/* TREE BACKGROUND */
-.tree {
-    position: absolute;
-    inset: 0;
-    background: url('tree.png') center bottom no-repeat;
-    background-size: contain;
-    opacity: 0.25;
-    z-index: 1;
+/* MESSAGE */
+.message{
+    position:absolute;
+    top:5%;
+    width:100%;
+    text-align:center;
+    font-size:26px;
+    color:#c9184a;
+    display:none;
+    z-index:10;
 }
+
+/* TEDDY */
+.teddy{
+    position:absolute;
+    bottom:5%;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:60px;
+    z-index:5;
+}
+
+/* PHOTOS */
+.photo-box{
+    position:absolute;
+    width:130px;
+    text-align:center;
+    z-index:6;
+}
+.photo{
+    width:100px;
+    height:120px;
+    margin:auto;
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+    border:3px solid #ff8fab;
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+    animation:float 4s ease-in-out infinite;
+}
+.photo img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+.caption{
+    margin-top:6px;
+    font-size:13px;
+    color:#b5174f;
+}
+@keyframes float{
+    0%{transform:translateY(0)}
+    50%{transform:translateY(-8px)}
+    100%{transform:translateY(0)}
+}
+
+/* POSITIONS */
+.p1{top:30%;left:5%}
+.p2{top:20%;left:25%}
+.p3{top:15%;left:50%;transform:translateX(-50%)}
+.p4{top:20%;right:25%}
+.p5{top:30%;right:5%}
 
 /* ROSE PETALS */
-.petal {
-    position: absolute;
-    font-size: 22px;
-    animation: fall 10s linear infinite;
-    opacity: 0.8;
-    z-index: 2;
+.petal{
+    position:absolute;
+    font-size:22px;
+    animation:fall 10s linear infinite;
 }
-@keyframes fall {
-    from { transform: translateY(-10vh) rotate(0deg); }
-    to { transform: translateY(110vh) rotate(360deg); }
+@keyframes fall{
+    from{transform:translateY(-10vh) rotate(0deg)}
+    to{transform:translateY(110vh) rotate(360deg)}
 }
 
-/* PHOTO + NOTE */
-.photo-box {
-    position: absolute;
-    text-align: center;
-    width: 130px;
-    z-index: 5;
+/* HEART BALLOONS */
+.balloon{
+    position:absolute;
+    font-size:26px;
+    animation:floatUp 12s linear infinite;
+}
+@keyframes floatUp{
+    from{transform:translateY(110vh)}
+    to{transform:translateY(-20vh)}
 }
 
-.photo {
-    width: 90px;
-    height: 90px;
-    margin: auto;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 3px solid #ff8fab;
-    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-    animation: float 4s ease-in-out infinite;
+/* FIREWORKS */
+.firework{
+    position:absolute;
+    font-size:24px;
+    animation:explode 2s ease-out forwards;
 }
-
-.photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+@keyframes explode{
+    from{transform:scale(0);opacity:1}
+    to{transform:scale(3);opacity:0}
 }
-
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-    100% { transform: translateY(0); }
-}
-
-.caption {
-    margin-top: 6px;
-    font-size: 13px;
-    color: #b5174f;
-    line-height: 1.25;
-}
-
-/* POSITIONS (TREE BRANCH STYLE) */
-.p1 { top: 55%; left: 10%; }
-.p2 { top: 40%; left: 28%; }
-.p3 { top: 28%; left: 50%; transform: translateX(-50%); }
-.p4 { top: 40%; right: 28%; }
-.p5 { top: 55%; right: 10%; }
 </style>
 </head>
 
 <body>
 
-<!-- START -->
 <div class="start" onclick="startAll()">
     <h1>Tap to begin 💖</h1>
 </div>
 
-<!-- TREE -->
-<div class="tree"></div>
+<div class="message" id="msg">
+    Happy Birthday, MAGGIE JI 🙃 ❤️
+</div>
 
-<!-- PHOTOS + NOTES -->
+<div class="teddy">🧸</div>
+
+<!-- PHOTOS -->
 <div class="photo-box p1">
     <div class="photo"><img src="photo1.jpg"></div>
     <div class="caption">Maggie Ji — the day we really understood each other, the vibes felt warm and different.</div>
@@ -123,12 +153,12 @@ body {
 
 <div class="photo-box p2">
     <div class="photo"><img src="photo2.jpg"></div>
-    <div class="caption">Maggie Ji — the first time at Riverfront, you made my favourite place feel calmer, softer, and more beautiful.</div>
+    <div class="caption">Maggie Ji — the first time at Riverfront, you made my favourite place feel calmer and more beautiful.</div>
 </div>
 
 <div class="photo-box p3">
     <div class="photo"><img src="photo3.jpg"></div>
-    <div class="caption">Maggie Ji — my Lady Singham, strong, fearless, and quietly inspiring to me.</div>
+    <div class="caption">Maggie Ji — my Lady Singham, strong and quietly inspiring to me.</div>
 </div>
 
 <div class="photo-box p4">
@@ -141,26 +171,57 @@ body {
     <div class="caption">Maggie Ji — a place where we both felt peace, just existing there together.</div>
 </div>
 
-<!-- MUSIC -->
 <audio id="bgMusic" loop>
     <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-function startAll() {
-    document.querySelector('.start').style.display = 'none';
-    document.getElementById('bgMusic').play();
+function startAll(){
+    document.querySelector('.start').style.display='none';
+    document.getElementById('msg').style.display='block';
+
+    const music=document.getElementById('bgMusic');
+    music.volume=0.4;
+    music.play();
+
     petals();
+    balloons();
+    setTimeout(fireworks,15000);
 }
 
-function petals() {
-    for (let i = 0; i < 30; i++) {
-        let p = document.createElement("div");
-        p.className = "petal";
-        p.innerHTML = "🌹";
-        p.style.left = Math.random() * 100 + "vw";
-        p.style.animationDelay = Math.random() * 10 + "s";
+/* ROSES */
+function petals(){
+    for(let i=0;i<25;i++){
+        let p=document.createElement('div');
+        p.className='petal';
+        p.innerHTML='🌹';
+        p.style.left=Math.random()*100+'vw';
+        p.style.animationDelay=Math.random()*10+'s';
         document.body.appendChild(p);
+    }
+}
+
+/* BALLOONS */
+function balloons(){
+    for(let i=0;i<15;i++){
+        let b=document.createElement('div');
+        b.className='balloon';
+        b.innerHTML='💖';
+        b.style.left=Math.random()*100+'vw';
+        b.style.animationDelay=Math.random()*5+'s';
+        document.body.appendChild(b);
+    }
+}
+
+/* FIREWORKS */
+function fireworks(){
+    for(let i=0;i<20;i++){
+        let f=document.createElement('div');
+        f.className='firework';
+        f.innerHTML='✨';
+        f.style.left=Math.random()*100+'vw';
+        f.style.top=Math.random()*50+'vh';
+        document.body.appendChild(f);
     }
 }
 </script>
