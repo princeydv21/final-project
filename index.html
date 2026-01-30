@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Memory Tree for Maggie Ji</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, #ffd6e8, #fff5fa);
+    font-family: 'Georgia', serif;
+    overflow: hidden;
+}
+
+/* START SCREEN */
+.start {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50;
+    background: linear-gradient(to bottom, #ffd6e8, #fff5fa);
+    cursor: pointer;
+}
+.start h1 {
+    color: #c9184a;
+    animation: pulse 2s infinite;
+}
+@keyframes pulse {
+    0% { opacity: .4; }
+    50% { opacity: 1; }
+    100% { opacity: .4; }
+}
+
+/* TREE BACKGROUND */
+.tree {
+    position: absolute;
+    inset: 0;
+    background: url('tree.png') center bottom no-repeat;
+    background-size: contain;
+    opacity: 0.25;
+    z-index: 1;
+}
+
+/* ROSE PETALS */
+.petal {
+    position: absolute;
+    font-size: 22px;
+    animation: fall 10s linear infinite;
+    opacity: 0.8;
+    z-index: 2;
+}
+@keyframes fall {
+    from { transform: translateY(-10vh) rotate(0deg); }
+    to { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* PHOTO + NOTE */
+.photo-box {
+    position: absolute;
+    text-align: center;
+    width: 130px;
+    z-index: 5;
+}
+
+.photo {
+    width: 90px;
+    height: 90px;
+    margin: auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #ff8fab;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    animation: float 4s ease-in-out infinite;
+}
+
+.photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0); }
+}
+
+.caption {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #b5174f;
+    line-height: 1.25;
+}
+
+/* POSITIONS (TREE BRANCH STYLE) */
+.p1 { top: 55%; left: 10%; }
+.p2 { top: 40%; left: 28%; }
+.p3 { top: 28%; left: 50%; transform: translateX(-50%); }
+.p4 { top: 40%; right: 28%; }
+.p5 { top: 55%; right: 10%; }
+</style>
+</head>
+
+<body>
+
+<!-- START -->
+<div class="start" onclick="startAll()">
+    <h1>Tap to begin 💖</h1>
+</div>
+
+<!-- TREE -->
+<div class="tree"></div>
+
+<!-- PHOTOS + NOTES -->
+<div class="photo-box p1">
+    <div class="photo"><img src="photo1.jpg"></div>
+    <div class="caption">Maggie Ji — the day we really understood each other, the vibes felt warm and different.</div>
+</div>
+
+<div class="photo-box p2">
+    <div class="photo"><img src="photo2.jpg"></div>
+    <div class="caption">Maggie Ji — the first time at Riverfront, you made my favourite place feel calmer, softer, and more beautiful.</div>
+</div>
+
+<div class="photo-box p3">
+    <div class="photo"><img src="photo3.jpg"></div>
+    <div class="caption">Maggie Ji — my Lady Singham, strong, fearless, and quietly inspiring to me.</div>
+</div>
+
+<div class="photo-box p4">
+    <div class="photo"><img src="photo4.jpg"></div>
+    <div class="caption">Maggie Ji — my shadow girl, always close, always felt, even in silence.</div>
+</div>
+
+<div class="photo-box p5">
+    <div class="photo"><img src="photo5.jpg"></div>
+    <div class="caption">Maggie Ji — a place where we both felt peace, just existing there together.</div>
+</div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function startAll() {
+    document.querySelector('.start').style.display = 'none';
+    document.getElementById('bgMusic').play();
+    petals();
+}
+
+function petals() {
+    for (let i = 0; i < 30; i++) {
+        let p = document.createElement("div");
+        p.className = "petal";
+        p.innerHTML = "🌹";
+        p.style.left = Math.random() * 100 + "vw";
+        p.style.animationDelay = Math.random() * 10 + "s";
+        document.body.appendChild(p);
+    }
+}
+</script>
+
+</body>
+</html>
